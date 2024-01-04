@@ -3,6 +3,7 @@ package com.springjdbc.SpringJdbc;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.springjdbc.SpringJdbc.dao.StudentDao;
@@ -14,17 +15,18 @@ public class App
     {
         System.out.println( "Start..." );
         
-        ApplicationContext con = new ClassPathXmlApplicationContext("com/springjdbc/SpringJdbc/jdbc_config.xml");
-               
+//        ApplicationContext con = new ClassPathXmlApplicationContext("com/springjdbc/SpringJdbc/jdbc_config.xml");
+        ApplicationContext con = new AnnotationConfigApplicationContext(JdbcConfig.class);       
+        
         StudentDao sDao = con.getBean("sdao", StudentDao.class);
         
         
 
 //      Insert data
 //        Student s = new Student();
-//        s.setRollno(4);
-//        s.setName("Aman");
-//        s.setCls(11);
+//        s.setRollno(5);
+//        s.setName("Raman");
+//        s.setCls(12);
 //        int result = sDao.insert(s);
 //        System.out.println("number of records inserted = " + result);
         
@@ -47,9 +49,9 @@ public class App
 //        System.out.println(st);
       
 //        Select all data
-//        List<Student> student = sDao.getAllStudents();
-//        for(Student stud : student) {
-//        	System.out.println(stud);
-//        }
+        List<Student> student = sDao.getAllStudents();
+        for(Student stud : student) {
+        	System.out.println(stud);
+        }
     }
 }
